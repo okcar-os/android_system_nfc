@@ -115,7 +115,11 @@ bool ConfigValue::parseFromString(std::string in) {
 }
 
 void ConfigFile::addConfig(const std::string& key, ConfigValue& value) {
-  CHECK(!hasKey(key));
+  // CHECK(!hasKey(key));
+  if (hasKey(key)) {
+    LOG(ERROR) << "ERROR: hasKey" << key << "'";
+    return;
+  }
   values_.emplace(key, value);
 }
 
